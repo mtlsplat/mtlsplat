@@ -25,7 +25,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install dependencies
         run: npm install
@@ -35,7 +35,7 @@ jobs:
 
       - name: Ensure CNAME and 404 fallback are present in dist
         run: |
-          if [ -f CNAME ]; then cp CNAME dist/CNAME; fi
+          if [ -f public/CNAME ]; then cp public/CNAME dist/CNAME; elif [ -f CNAME ]; then cp CNAME dist/CNAME; fi
           cp dist/index.html dist/404.html
 
       - name: Setup Pages
